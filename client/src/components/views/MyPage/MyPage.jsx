@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { POST_SERVER } from "../../Config";
+import { ContentContainer } from "../../FormStyle";
 
 function MyPage() {
   const user = useSelector((state) => state.user);
@@ -21,14 +22,14 @@ function MyPage() {
   };
   const renderMyPosts = MyPosts.map((post) => {
     return (
-      <div key={post._id}>
+      <ContentContainer key={post._id}>
         <div>
           <div>{post.name}</div>
           <div>{post.createdAt}</div>
         </div>
         <div>{post.title}</div>
         <div>{post.content}</div>
-      </div>
+      </ContentContainer>
     );
   });
 

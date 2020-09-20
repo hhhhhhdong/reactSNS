@@ -3,7 +3,12 @@ import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../../_actions/user_actions";
-import { Navbar, NavbarItem } from "../../FormStyle";
+import {
+  Navbar,
+  NavbarItem,
+  LogoutButton,
+  NavbarContainer,
+} from "../../FormStyle";
 
 const NavBar = (props) => {
   const user = useSelector((state) => state.user);
@@ -28,24 +33,36 @@ const NavBar = (props) => {
   if (!logged) {
     return (
       <Navbar>
-        <NavbarItem islogo>
-          <Link to="/">home</Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link to="/login">login</Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link to="/register">register</Link>
-        </NavbarItem>
+        <NavbarContainer>
+          <NavbarItem>
+            <Link to="/">Home</Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Link to="/login">Login</Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Link to="/register">Register</Link>
+          </NavbarItem>
+        </NavbarContainer>
       </Navbar>
     );
   } else {
     return (
       <Navbar>
-        <Link to="/">home</Link>
-        <Link to="/mypage">mypage</Link>
-        <Link to="/write">write</Link>
-        <button onClick={onClickHandler}>logout</button>
+        <NavbarContainer>
+          <NavbarItem>
+            <Link to="/">Home</Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Link to="/mypage">MyPage</Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Link to="/write">Write</Link>
+          </NavbarItem>
+          <NavbarItem>
+            <LogoutButton onClick={onClickHandler}>Logout</LogoutButton>
+          </NavbarItem>
+        </NavbarContainer>
       </Navbar>
     );
   }

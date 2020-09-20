@@ -1,2 +1,6 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+server/dev.js
+server/node_modules/*
+client/node_modules/*

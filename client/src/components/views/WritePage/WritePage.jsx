@@ -5,6 +5,14 @@ import { withRouter } from "react-router-dom";
 import { POST_SERVER } from "../../Config";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import {
+  Button,
+  Input,
+  Form,
+  Label,
+  TextArea,
+  InputContainer,
+} from "../../FormStyle";
 
 const WritePage = (props) => {
   const user = useSelector((state) => state.user);
@@ -55,20 +63,22 @@ const WritePage = (props) => {
   };
 
   return (
-    <div>
-      <form onSubmit={onSubmit}>
-        <label htmlFor="title">Title</label>
-        <input type="text" vlaue={Title} onChange={onTilteHandler} />
-        <label htmlFor="content">Content</label>
-        <textarea
+    <Form onSubmit={onSubmit}>
+      <InputContainer>
+        <Label htmlFor="title">Title</Label>
+        <Input type="text" vlaue={Title} onChange={onTilteHandler} />
+      </InputContainer>
+      <InputContainer>
+        <Label htmlFor="content">Content</Label>
+        <TextArea
           cols="30"
           rows="10"
           vlaue={Content}
           onChange={onContentHandler}
-        ></textarea>
-        <button>Post</button>
-      </form>
-    </div>
+        ></TextArea>
+      </InputContainer>
+      <Button>Post</Button>
+    </Form>
   );
 };
 

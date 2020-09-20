@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { POST_SERVER } from "../../Config";
-import { ContentContainer } from "../../FormStyle";
+import RenderPosts from "../LandingPage/RenderPosts";
 
 function MyPage() {
   const user = useSelector((state) => state.user);
@@ -22,14 +22,11 @@ function MyPage() {
   };
   const renderMyPosts = MyPosts.map((post) => {
     return (
-      <ContentContainer key={post._id}>
-        <div>
-          <div>{post.name}</div>
-          <div>{post.createdAt}</div>
-        </div>
-        <div>{post.title}</div>
-        <div>{post.content}</div>
-      </ContentContainer>
+      <RenderPosts
+        key={post._id}
+        post={post}
+        user={user.userInfo}
+      ></RenderPosts>
     );
   });
 

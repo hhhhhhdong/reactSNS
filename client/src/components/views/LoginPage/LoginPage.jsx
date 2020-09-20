@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../../../_actions/user_actions";
 import { withRouter } from "react-router-dom";
-import { Button, Input, Form, Label } from "../../FormStyle";
+import { Button, Input, Form, Label, InputContainer } from "../../FormStyle";
 
 const LoginPage = (props) => {
   const dispatch = useDispatch();
@@ -39,12 +39,18 @@ const LoginPage = (props) => {
   return (
     <div>
       <Form onSubmit={onSubmit}>
-        <Label htmlFor="email">Email</Label>
-        <Input type="text" value={Email} onChange={onEmailHandler} />
-        <br />
-        <Label htmlFor="password">Password</Label>
-        <Input type="password" value={Password} onChange={onPasswordHandler} />
-        <br />
+        <InputContainer>
+          <Label htmlFor="email">Email</Label>
+          <Input type="text" value={Email} onChange={onEmailHandler} />
+        </InputContainer>
+        <InputContainer>
+          <Label htmlFor="password">Password</Label>
+          <Input
+            type="password"
+            value={Password}
+            onChange={onPasswordHandler}
+          />
+        </InputContainer>
         <Button>login</Button>
       </Form>
     </div>

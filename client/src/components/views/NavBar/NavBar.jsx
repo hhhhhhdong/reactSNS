@@ -23,7 +23,7 @@ const NavBar = (props) => {
       if (!response.payload.logged) {
         localStorage.setItem("token", "");
         localStorage.setItem("logged", false);
-        props.history.push("/");
+        props.history.push("/login");
       } else {
         alert("Log Out Failed");
       }

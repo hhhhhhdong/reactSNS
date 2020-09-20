@@ -29,4 +29,41 @@ router.get("/myposts", (req, res) => {
     });
 });
 
+router.post("/likepost", (req, res) => {
+  console.log(req.body.Liked);
+  if (!req.body.Liked) {
+    Post.findOneAndUpdate(
+      { _id: req.body.postId },
+      {
+        $push: {
+          liked: {
+            postId: req.body.userId,
+          },
+        },
+      },
+      { new: true },
+      (err, likepost) => {
+        if (err) return res.json({ success: false, err });
+        return res.status(200).json({ liked: true });
+      }
+    );
+  } else {
+    Post.findOneAndUpdate(
+      { _id: req.body.postId },
+      {
+        $pull: {
+          liked: {
+            postId: req.body.userId,
+          },
+        },
+      },
+      { new: true },
+      (err, likepost) => {
+        if (err) return res.json({ success: false, err });
+        return res.status(200).json({ liked: false });
+      }
+    );
+  }
+});
+
 module.exports = router;

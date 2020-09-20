@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { POST_SERVER } from "../../Config";
 import axios from "axios";
-import {
-  ContentContainer,
-  ContentHeader,
-  ContentTitle,
-  ContentContent,
-} from "../../FormStyle";
+import { useSelector } from "react-redux";
+import RenderPosts from "./RenderPosts";
 
 const LandingPage = () => {
+  const user = useSelector((state) => state.user);
   const [Posts, setPosts] = useState([]);
   useEffect(() => {
     getPost();
-  }, []);
+  }, [user]);
 
   const getPost = () => {
     axios.get(`${POST_SERVER}/posts`).then((response) => {
@@ -24,14 +21,11 @@ const LandingPage = () => {
 
   const renderPosts = Posts.map((post) => {
     return (
-      <ContentContainer key={post._id}>
-        <ContentHeader>
-          <div>작성자 : {post.name}</div>
-          <div>작성일자 : {post.createdAt.slice(0, 10)}</div>
-        </ContentHeader>
-        <ContentTitle>{post.title}</ContentTitle>
-        <ContentContent>{post.content}</ContentContent>
-      </ContentContainer>
+      <RenderPosts
+        key={post._id}
+        post={post}
+        user={user.userInfo}
+      ></RenderPosts>
     );
   });
 

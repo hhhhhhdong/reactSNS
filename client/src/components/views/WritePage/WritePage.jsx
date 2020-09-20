@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { userPost } from "../../../_actions/user_actions";
 import { withRouter } from "react-router-dom";
 import { POST_SERVER } from "../../Config";
 import axios from "axios";
-import { useSelector } from "react-redux";
 import {
   Button,
   Input,
@@ -30,6 +29,10 @@ const WritePage = (props) => {
 
   const onSubmit = (event) => {
     event.preventDefault();
+
+    if (!Title || !Content) {
+      return alert("모든 값을 입력해 주셔야합니다.");
+    }
 
     const toMypost = {
       title: Title,

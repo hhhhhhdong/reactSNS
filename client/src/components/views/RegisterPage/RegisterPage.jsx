@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../../../_actions/user_actions";
 import { withRouter } from "react-router-dom";
-import { Button, Input, Form, Label } from "../../FormStyle";
+import { Button, Input, Form, Label, InputContainer } from "../../FormStyle";
 
 const RegisterPage = (props) => {
   const dispatch = useDispatch();
@@ -30,6 +30,10 @@ const RegisterPage = (props) => {
   const onSubmit = (event) => {
     event.preventDefault();
 
+    if (!Email || !Name || !Password || !ConfirmPassword) {
+      return alert("모든 값을 입력해 주셔야합니다.");
+    }
+
     if (Password !== ConfirmPassword) {
       return alert("비밀번호를 확인해주세요");
     }
@@ -52,21 +56,30 @@ const RegisterPage = (props) => {
   return (
     <div>
       <Form onSubmit={onSubmit}>
-        <Label htmlFor="email">Email</Label>
-        <Input type="text" value={Email} onChange={onEmailHandler} />
-
-        <Label htmlFor="name">Name</Label>
-        <Input type="text" value={Name} onChange={onNameHandler} />
-
-        <Label htmlFor="password">Password</Label>
-        <Input type="password" value={Password} onChange={onPasswordHandler} />
-
-        <Label htmlFor="password">Confirm Password</Label>
-        <Input
-          type="password"
-          value={ConfirmPassword}
-          onChange={onConfirmPasswordHandler}
-        />
+        <InputContainer>
+          <Label htmlFor="email">Email</Label>
+          <Input type="text" value={Email} onChange={onEmailHandler} />
+        </InputContainer>
+        <InputContainer>
+          <Label htmlFor="name">Name</Label>
+          <Input type="text" value={Name} onChange={onNameHandler} />
+        </InputContainer>
+        <InputContainer>
+          <Label htmlFor="password">Password</Label>
+          <Input
+            type="password"
+            value={Password}
+            onChange={onPasswordHandler}
+          />
+        </InputContainer>
+        <InputContainer>
+          <Label htmlFor="password">Confirm Password</Label>
+          <Input
+            type="password"
+            value={ConfirmPassword}
+            onChange={onConfirmPasswordHandler}
+          />
+        </InputContainer>
 
         <Button>Sign up</Button>
       </Form>

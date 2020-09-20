@@ -17,6 +17,10 @@ const poseSchema = mongoose.Schema(
     content: {
       type: String,
     },
+    liked: {
+      type: Array,
+      default: [],
+    },
     views: {
       type: Number,
       default: 0,

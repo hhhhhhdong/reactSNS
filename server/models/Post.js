@@ -25,6 +25,10 @@ const poseSchema = mongoose.Schema(
       type: Number,
       default: 0,
     },
+    coments: {
+      type: Array,
+      default: [],
+    },
   },
   { timestamps: true }
 );

@@ -14,7 +14,7 @@ router.get("/posts", (req, res) => {
   Post.find()
     .sort({ createdAt: -1 })
     .exec((err, postInfo) => {
-      if (err) return alert(err);
+      if (err) return res.status(400).json({ err });
       return res.status(200).json({ success: true, postInfo });
     });
 });
@@ -24,13 +24,12 @@ router.get("/myposts", (req, res) => {
   Post.find({ writer: myId })
     .sort({ createdAt: -1 })
     .exec((err, postInfo) => {
-      if (err) return alert(err);
+      if (err) return res.status(400).json({ err });
       return res.status(200).json({ success: true, postInfo });
     });
 });
 
 router.post("/likepost", (req, res) => {
-  console.log(req.body.Liked);
   if (!req.body.Liked) {
     Post.findOneAndUpdate(
       { _id: req.body.postId },
@@ -64,6 +63,32 @@ router.post("/likepost", (req, res) => {
       }
     );
   }
+});
+
+router.post("/postinfo", (req, res) => {
+  Post.findOneAndUpdate(
+    { _id: req.body.postId },
+    {
+      $push: {
+        coments: {
+          writerId: req.body.writerId,
+          writerName: req.body.writerName,
+          coment: req.body.coment,
+        },
+      },
+    },
+    { new: true },
+    (err, post) => {
+      if (err) return res.json({ success: false, err });
+      return res
+        .status(200)
+        .json({
+          writerId: req.body.writerId,
+          writerName: req.body.writerName,
+          coment: req.body.coment,
+        });
+    }
+  );
 });
 
 module.exports = router;

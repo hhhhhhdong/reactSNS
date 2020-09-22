@@ -9,6 +9,7 @@ import RegisterPage from "./views/RegisterPage/RegisterPage";
 import NavBar from "./views/NavBar/NavBar";
 import WritePage from "./views/WritePage/WritePage";
 import MyPage from "./views/MyPage/MyPage";
+import PostInfo from "./views/PostInfo/PostInfo";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route exact path="/register" component={Auth(RegisterPage, false)} />
           <Route exact path="/write" component={Auth(WritePage, true)} />
           <Route exact path="/mypage" component={Auth(MyPage, true)} />
+          <Route exact path="/postinfo" component={Auth(PostInfo, null)} />
         </Switch>
       </Contaniner>
     </BrowserRouter>

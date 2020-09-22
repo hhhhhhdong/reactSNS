@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { POST_SERVER } from "../../Config";
 import RenderPosts from "../LandingPage/RenderPosts";
 
-function MyPage() {
+const MyPage = () => {
   const user = useSelector((state) => state.user);
   const [MyPosts, setMyPosts] = useState([]);
   useEffect(() => {
@@ -31,6 +31,6 @@ function MyPage() {
   });
 
   return <div>{renderMyPosts}</div>;
-}
+};
 
 export default MyPage;

@@ -176,3 +176,64 @@ export const ContentContent = styled.div`
   text-align: left;
   margin: 18px;
 `;
+
+export const ComentForm = styled.form`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+}
+`;
+
+export const ComentLabel = styled.label`
+  margin-left: 1em;
+  width: 6em;
+  box-sizing: border-box;
+`;
+
+export const ComentInput = styled.input`
+  box-sizing: border-box;
+  &:active,
+  &:focus {
+    outline: none;
+    border: 1px solid #97d6eb;
+  }
+  width: 30em;
+  height: 2.857em;
+  background-color: #efefef;
+  border-radius: 6px;
+  border: 1px solid #dedede;
+  color: #3a3a3a;
+`;
+
+export const ComentButton = styled.button`
+  -webkit-appearance: none;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  &:active,
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    color: #fff;
+    background-color: #8c7ae6;
+    opacity: 0.9;
+  }
+  margin-right: 2em;
+  width: 8em;
+  height: 3em;
+`;
+
+export const ComentContainer = styled.div`
+  color: black;
+  background-color: #bc9ee6;
+  border-radius: 15px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 1em auto;
+  width: 30em;
+  height: 2em;
+`;

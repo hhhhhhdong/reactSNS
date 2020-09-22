@@ -7,8 +7,10 @@ import {
 } from "../../FormStyle";
 import { POST_SERVER } from "../../Config";
 import axios from "axios";
+import { withRouter } from "react-router-dom";
 
-const RenderPosts = ({ post, user }) => {
+const RenderPosts = (props) => {
+  const { post, user } = props;
   const [Liked, setLiked] = useState(false);
   const [CountLike, setCountLike] = useState(0);
 
@@ -45,8 +47,15 @@ const RenderPosts = ({ post, user }) => {
     setCountLike(post.liked.length);
   }, [user]);
 
+  const onClickHandler = (e) => {
+    if (e.target.tagName === "I") {
+      return;
+    }
+    props.history.push("/postinfo", { post: post });
+  };
+
   return (
-    <ContentContainer>
+    <ContentContainer onClick={onClickHandler}>
       <ContentHeader>
         <div>작성자 : {post.name}</div>
         <div>작성일자 : {post.createdAt.slice(0, 10)}</div>
@@ -64,4 +73,4 @@ const RenderPosts = ({ post, user }) => {
   );
 };
 
-export default RenderPosts;
+export default withRouter(RenderPosts);

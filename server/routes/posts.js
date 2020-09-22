@@ -42,9 +42,9 @@ router.post("/likepost", (req, res) => {
         },
       },
       { new: true },
-      (err, likepost) => {
+      (err, post) => {
         if (err) return res.json({ success: false, err });
-        return res.status(200).json({ liked: true });
+        return res.status(200).json({ liked: true, count: post.liked.length });
       }
     );
   } else {
@@ -58,9 +58,9 @@ router.post("/likepost", (req, res) => {
         },
       },
       { new: true },
-      (err, likepost) => {
+      (err, post) => {
         if (err) return res.json({ success: false, err });
-        return res.status(200).json({ liked: false });
+        return res.status(200).json({ liked: false, count: post.liked.length });
       }
     );
   }

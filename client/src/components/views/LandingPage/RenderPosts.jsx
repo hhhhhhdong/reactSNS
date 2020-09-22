@@ -10,6 +10,8 @@ import axios from "axios";
 
 const RenderPosts = ({ post, user }) => {
   const [Liked, setLiked] = useState(false);
+  const [CountLike, setCountLike] = useState(0);
+
   const onClick = () => {
     if (!user.logged) {
       return alert("로그인 후 이용 가능합니다.");
@@ -24,8 +26,10 @@ const RenderPosts = ({ post, user }) => {
 
     axios.post(`${POST_SERVER}/likepost`, body).then((response) => {
       if (response.data.liked) {
+        setCountLike(response.data.count);
         return console.log("push");
       } else {
+        setCountLike(response.data.count);
         return console.log("pull");
       }
     });
@@ -38,6 +42,7 @@ const RenderPosts = ({ post, user }) => {
           setLiked(true);
         }
       });
+    setCountLike(post.liked.length);
   }, [user]);
 
   return (
@@ -48,7 +53,10 @@ const RenderPosts = ({ post, user }) => {
         <i
           onClick={onClick}
           className={Liked ? "fas fa-heart" : "far fa-heart"}
-        ></i>
+          style={{ fontSize: 17 }}
+        >
+          <span>{CountLike}</span>
+        </i>
       </ContentHeader>
       <ContentTitle>{post.title}</ContentTitle>
       <ContentContent>{post.content}</ContentContent>

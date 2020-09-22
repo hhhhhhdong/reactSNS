@@ -154,6 +154,10 @@ export const ContentContainer = styled.div`
   color: black;
   background-color: #bc9ee6;
   border-radius: 15px;
+  transition: all 200ms ease-in-out;
+  &:hover {
+    transform: scale(1.07);
+  }
 `;
 
 export const ContentHeader = styled.div`

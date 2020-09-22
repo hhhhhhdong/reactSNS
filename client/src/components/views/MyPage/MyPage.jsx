@@ -9,7 +9,7 @@ function MyPage() {
   const [MyPosts, setMyPosts] = useState([]);
   useEffect(() => {
     user.userInfo && getPost();
-  }, []);
+  }, [user]);
 
   const getPost = () => {
     axios
